@@ -1,0 +1,15 @@
+DROP TABLE customers;
+
+CREATE TABLE "customers" (
+	id INTEGER AUTO_INCREMENT NOT NULL,
+	name CHAR(15),
+	surname CHAR(20),
+	patronymic CHAR(20),
+	numberbicycle CHAR(10),
+	numberphone CHAR(11),
+	state CHAR(3),
+	cost CHAR(8),
+	date DATA,
+	breakage TEXT,
+	PRIMARY KEY(id)
+);

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<clients>
+        
+    <id id="1">
+        <name>Оскар</name>
+        <surname>Быков</surname>
+        <patronymic>Михайлович</patronymic>
+        <date>11.02.19</date>
+        <numberBicycle>f15sd6f31</numberBicycle>
+        <state>50</state>
+        <breakage>Рама</breakage>
+        <cost>2500</cost>
+        <term>25.02.19</term>
+    </id>
+    <id id="2">
+        <name>Иосиф</name>
+        <surname>Ермаков</surname>
+        <patronymic>Иринеевич</patronymic>
+        <date>15.02.19</date>
+        <numberBicycle>d25h87951d</numberBicycle>
+        <state>10</state>
+        <breakage>Шины</breakage>
+        <cost>650</cost>
+        <term>16.02.19</term>
+    </id>
+    <id id="3">
+        <name>Лука</name>
+        <surname>Кузнецов</surname>
+        <patronymic>Георгьевич</patronymic>
+        <date>01.03.19</date>
+        <numberBicycle>h56dws5</numberBicycle>
+        <state>35</state>
+        <breakage>Цепь</breakage>
+        <cost>1230</cost>
+        <term>03.03.19</term>
+    </id>
+    <id id="4">
+        <name>Ян</name>
+        <surname>Данилов</surname>
+        <patronymic>Григорьевич</patronymic>
+        <date>20.03.19</date>
+        <numberBicycle>fda25f86s</numberBicycle>
+        <state>15</state>
+        <breakage>Сиденье</breakage>
+        <cost>980</cost>
+        <term>30.03.19</term>
+    </id>
+    <id id="5">
+        <name>Макс</name>
+        <surname>Ковалев</surname>
+        <patronymic>Юрьевич</patronymic>
+        <date>20:47:57</date>
+        <numberBicycle>dsgf654dk</numberBicycle>
+        <state>70</state>
+        <breakage>шина</breakage>
+        <cost>600</cost>
+        <term>12.23.2001</term>
+    </id>
+</clients>

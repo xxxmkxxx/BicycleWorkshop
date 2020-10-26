@@ -1,7 +1,8 @@
 package com.xxxmkxxx.BicycleWorkshop;
 
-import com.xxxmkxxx.BicycleWorkshop.SQL.SQLite.*;
-import com.xxxmkxxx.BicycleWorkshop.XML.*;
+import com.xxxmkxxx.BicycleWorkshop.sql.sqlLite.*;
+import com.xxxmkxxx.BicycleWorkshop.sql.sqlLite.SQLite;
+import com.xxxmkxxx.BicycleWorkshop.xml.*;
 
 import java.util.HashMap;
 import java.util.Map;

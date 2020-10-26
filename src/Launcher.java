@@ -1,5 +1,7 @@
+import com.xxxmkxxx.BicycleWorkshop.gui.BicycleWorkshop;
+
 public class Launcher {
     public static void main(String[] args) {
-        com.xxxmkxxx.BicycleWorkshop.BicycleWorkshop.main(args);
+        BicycleWorkshop.main(args);
     }
 }

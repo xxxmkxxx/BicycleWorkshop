@@ -1,6 +1,5 @@
-package com.xxxmkxxx.BicycleWorkshop.XML;
+package com.xxxmkxxx.BicycleWorkshop.xml;
 
-import com.sun.security.jgss.GSSUtil;
 import com.xxxmkxxx.BicycleWorkshop.IWorkingVithData;
 import com.xxxmkxxx.BicycleWorkshop.Order;
 import org.w3c.dom.*;
@@ -12,21 +11,18 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 
 public class XML implements IWorkingVithData {
     private DocumentBuilder builder;
     private Document document;
     private NodeList listId;
     private String indentable = "no";
-    private String path = "src\\com\\xxxmkxxx\\BicycleWorkshop\\XML\\";
+    private String path = "src\\com\\xxxmkxxx\\BicycleWorkshop\\xml\\";
     private String nameFile;
 
 

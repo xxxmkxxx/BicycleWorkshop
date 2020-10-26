@@ -1,13 +1,8 @@
 package com.xxxmkxxx.BicycleWorkshop;
 
-import com.xxxmkxxx.BicycleWorkshop.XML.XML;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Order implements Cloneable{
     private int id;

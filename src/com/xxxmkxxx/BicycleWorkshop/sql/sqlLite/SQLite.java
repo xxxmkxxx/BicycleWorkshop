@@ -1,4 +1,4 @@
-package com.xxxmkxxx.BicycleWorkshop.SQL.SQLite;
+package com.xxxmkxxx.BicycleWorkshop.sql.sqlLite;
 
 import com.xxxmkxxx.BicycleWorkshop.IWorkingVithData;
 import com.xxxmkxxx.BicycleWorkshop.Order;
@@ -10,7 +10,7 @@ import java.util.List;
 
 public class SQLite implements IWorkingVithData {
     private Connection connection;
-    private String path = "src\\com\\xxxmkxxx\\BicycleWorkshop\\SQL\\SQLite\\";
+    private String path = "src\\com\\xxxmkxxx\\BicycleWorkshop\\sql\\sqlLite\\";
     private String nameFile;
     private String link = "jdbc:sqlite:";
     private List <Order> lastContent;

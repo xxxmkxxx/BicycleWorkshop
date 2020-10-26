@@ -1,7 +1,7 @@
 package com.xxxmkxxx.BicycleWorkshop;
 
-import com.xxxmkxxx.BicycleWorkshop.SQL.SQLite.SQLite;
-import com.xxxmkxxx.BicycleWorkshop.XML.*;
+import com.xxxmkxxx.BicycleWorkshop.sql.sqlLite.SQLite;
+import com.xxxmkxxx.BicycleWorkshop.xml.*;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;

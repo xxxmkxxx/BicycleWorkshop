@@ -25,9 +25,8 @@ public class BicycleWorkshop extends Application {
         URL url = getClass().getResource("loginPage.fxml");
 
         FXMLLoader loader = new FXMLLoader(url);
-        System.out.println(loader.getLocation());
 
-        //LoginController controller = loader.getController();
+        LoginController controller = loader.getController();
 
         Parent root = null;
         try {

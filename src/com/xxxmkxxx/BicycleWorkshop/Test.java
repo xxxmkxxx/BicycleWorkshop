@@ -1,6 +1,6 @@
 package com.xxxmkxxx.BicycleWorkshop;
 
-import com.xxxmkxxx.BicycleWorkshop.sql.sqlLite.SQLite;
+import com.xxxmkxxx.BicycleWorkshop.sql.sqlLite.SQLlite;
 import com.xxxmkxxx.BicycleWorkshop.xml.*;
 import org.xml.sax.SAXException;
 
@@ -15,7 +15,7 @@ public class Test {
 
     public static void someMethod() throws IOException, SAXException, ParserConfigurationException {
         XML xml = new XML("list.xml");
-        SQLite sql = new SQLite("list.db");
+        SQLlite sql = new SQLlite("list.db");
         List <Order> listOrders = xml.readData();
         //Order.addOrder(new Order("Вася", "Васюнин", "Петрович", "sffa5h45", "+79873613896", "Диск", "Шина"), listOrders, xml);
 

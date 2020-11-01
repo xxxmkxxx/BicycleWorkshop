@@ -1,7 +1,6 @@
 package com.xxxmkxxx.BicycleWorkshop;
 
-import com.xxxmkxxx.BicycleWorkshop.sql.sqlLite.*;
-import com.xxxmkxxx.BicycleWorkshop.sql.sqlLite.SQLite;
+import com.xxxmkxxx.BicycleWorkshop.sql.sqlLite.SQLlite;
 import com.xxxmkxxx.BicycleWorkshop.xml.*;
 
 import java.util.HashMap;
@@ -13,7 +12,7 @@ public class SafeData {
 
     private static void setVariantsSafeData(){
         variantsSafeData.put("xml", new XML("list.xml"));
-        variantsSafeData.put("db", new SQLite("list.db"));
+        variantsSafeData.put("db", new SQLlite("list.db"));
     }
 
     public static Object chooseVariantsSafeData(){

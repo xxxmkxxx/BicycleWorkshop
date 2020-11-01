@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SQLite implements IWorkingVithData {
+public class SQLlite implements IWorkingVithData {
     private Connection connection;
     private String path = "src\\com\\xxxmkxxx\\BicycleWorkshop\\sql\\sqlLite\\";
     private String nameFile;
@@ -45,7 +45,7 @@ public class SQLite implements IWorkingVithData {
 
             while(resultSet.next()) {
                 content.add (new Order(
-                        new SQLite(nameFile),
+                        new SQLlite(nameFile),
 //id
                         resultSet.getInt(1),
 //Имя
@@ -205,7 +205,39 @@ public class SQLite implements IWorkingVithData {
         }
     }
 
-    public SQLite(String nameFile) {
+//Метод для аунтификации аккаунта
+    public int auntificationAccaunt(String login, String password) throws SQLException {
+        connectSQL(nameFile);
+
+        String sql = "SELECT login, password FROM list_workers WHERE login = ?";
+        ResultSet resultSet = null;
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            statement.setString(1, login);
+
+            resultSet = statement.executeQuery();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        
+        if(resultSet == null) {
+            System.out.println("Аккаунта с таким логином не найдено!");
+            connection.close();
+            return 1;
+        }
+        else if(!resultSet.getString(2).equals(password)) {
+            connection.close();
+            return 2;
+        }
+        else {
+            connection.close();
+            return 0;
+        }
+    }
+
+    public SQLlite(String nameFile) {
         this.nameFile = nameFile;
     }
 }

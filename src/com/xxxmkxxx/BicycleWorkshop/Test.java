@@ -15,7 +15,7 @@ public class Test {
 
     public static void someMethod() throws IOException, SAXException, ParserConfigurationException {
         XML xml = new XML("list.xml");
-        SQLlite sql = new SQLlite("list.db");
+        SQLlite sql = new SQLlite("com/xxxmkxxx/BicycleWorkshop/sql/sqlLite/list.db");
         List <Order> listOrders = xml.readData();
         //new Order(xml).addOrder(new Order(xml,"Вася", "Васюнин", "Петрович", "sffa5h45", "+79873613896", "Диск", "Шина"), listOrders);
 

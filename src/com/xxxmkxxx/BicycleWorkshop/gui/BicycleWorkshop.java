@@ -2,10 +2,8 @@ package com.xxxmkxxx.BicycleWorkshop.gui;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
 
-import com.xxxmkxxx.BicycleWorkshop.Order;
+import com.xxxmkxxx.BicycleWorkshop.gui.controllers.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,7 +17,7 @@ public class BicycleWorkshop extends Application {
 
     @Override
     public void start(Stage stage) {
-        URL url = getClass().getResource("loginPage.fxml");
+        URL url = getClass().getResource("/loginPage.fxml");
 
         FXMLLoader loader = new FXMLLoader(url);
 

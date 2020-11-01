@@ -12,7 +12,7 @@ public class SafeData {
 
     private static void setVariantsSafeData(){
         variantsSafeData.put("xml", new XML("list.xml"));
-        variantsSafeData.put("db", new SQLlite("list.db"));
+        variantsSafeData.put("db", new SQLlite("com/xxxmkxxx/BicycleWorkshop/sql/sqlLite/list.db"));
     }
 
     public static Object chooseVariantsSafeData(){

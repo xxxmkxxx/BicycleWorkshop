@@ -10,7 +10,7 @@ import java.util.List;
 
 public class SQLlite implements IWorkingVithData {
     private Connection connection;
-    private String path = "out/BicycleWorkshop/com/xxxmkxxx/BicycleWorkshop/sql/sqlLite/";
+    private String path = "src/com/xxxmkxxx/BicycleWorkshop/sql/sqlLite/";
     private String nameFile;
     private String link = "jdbc:sqlite:";
     private List <Order> lastContent;
@@ -209,7 +209,7 @@ public class SQLlite implements IWorkingVithData {
     public int auntificationAccaunt(String login, String password) throws SQLException {
         connectSQL(nameFile);
 
-        String sql = "SELECT login, password FROM list_workers WHERE login = ?";
+        String sql = "SELECT login, password FROM workers WHERE login = ?";
         ResultSet resultSet = null;
 
         try {

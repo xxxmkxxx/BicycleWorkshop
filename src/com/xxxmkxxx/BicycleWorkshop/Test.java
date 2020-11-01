@@ -17,16 +17,16 @@ public class Test {
         XML xml = new XML("list.xml");
         SQLlite sql = new SQLlite("list.db");
         List <Order> listOrders = xml.readData();
-        //Order.addOrder(new Order("Вася", "Васюнин", "Петрович", "sffa5h45", "+79873613896", "Диск", "Шина"), listOrders, xml);
+        //new Order(xml).addOrder(new Order(xml,"Вася", "Васюнин", "Петрович", "sffa5h45", "+79873613896", "Диск", "Шина"), listOrders);
 
-        //Order.removeOrderForId(3, listOrders, xml);
+        //new Order(xml).removeOrderForId(16, listOrders);
 
 
         /*for(int i = 0; i < 20; i++) {
             Order.removeOrderForId(i, listOrders, xml);
         }*/
 
-        //xml.generateRedableXML();
+        xml.generateRedableXML();
 
         //sql.writeOrder(new Order("Вася", "Васюнин", "Петрович", "sffa5h45", "+79873613896", "Диск", "Шина"));
         //sql.removeOrder(5);

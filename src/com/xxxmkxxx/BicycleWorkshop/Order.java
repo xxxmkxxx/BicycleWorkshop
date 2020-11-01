@@ -7,7 +7,7 @@ import java.util.List;
 public class Order implements Cloneable{
     private int id;
     private String nameFile = "id.txt";
-    private String path = "src\\com\\xxxmkxxx\\BicycleWorkshop\\XML\\";
+    private String path = "out/BicycleWorkshop/com/xxxmkxxx/BicycleWorkshop/xml/";
 
     private IWorkingVithData object;
 

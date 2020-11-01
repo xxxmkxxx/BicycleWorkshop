@@ -13,9 +13,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class BicycleWorkshop extends Application {
-    Order order;
-    List <Order> listOrders;
-
     public static void main(String []args) {
         Application.launch(args);
     }

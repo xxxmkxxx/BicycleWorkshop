@@ -1,13 +1,19 @@
 package com.xxxmkxxx.BicycleWorkshop.gui;
 
+import com.xxxmkxxx.BicycleWorkshop.gui.mainPage.MainController;
 import com.xxxmkxxx.BicycleWorkshop.sql.sqlLite.SQLlite;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -35,6 +41,28 @@ public class LoginController implements Initializable {
         switch(new SQLlite("workers.db").auntificationAccaunt(loginField.getText(), passwordField.getText())) {
             case 0: {
                 System.out.println("verification success!");
+
+                URL url = getClass().getResource("mainPage/main.fxml");
+
+                FXMLLoader loader = new FXMLLoader(url);
+
+                MainController controller = loader.getController();
+
+                Parent root = null;
+                try {
+                    root = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Scene scene = new Scene(root);
+
+                Stage stage = new Stage();
+
+                stage.setTitle("main");
+                stage.setScene(scene);
+                stage.show();
+
                 errorChecker.setText("verification success!");
                 break;
             }

@@ -18,9 +18,7 @@ public class BicycleWorkshop extends Application {
     @Override
     public void start(Stage stage) {
         URL url = getClass().getResource("/loginPage.fxml");
-
         FXMLLoader loader = new FXMLLoader(url);
-
         LoginController controller = loader.getController();
 
         Parent root = null;

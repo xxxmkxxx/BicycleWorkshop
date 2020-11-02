@@ -1,14 +1,19 @@
 package com.xxxmkxxx.BicycleWorkshop.sql.sqlLite;
 
 import com.xxxmkxxx.BicycleWorkshop.IWorkingVithData;
+import com.xxxmkxxx.BicycleWorkshop.Logs.Log;
+import com.xxxmkxxx.BicycleWorkshop.Logs.Logger;
 import com.xxxmkxxx.BicycleWorkshop.Order;
 import org.sqlite.JDBC;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class SQLlite implements IWorkingVithData {
+    private Logger logger = new Logger();
+
     private Connection connection;
     private String path = "src/com/xxxmkxxx/BicycleWorkshop/sql/sqlLite/";
     private String nameFile;
@@ -205,8 +210,8 @@ public class SQLlite implements IWorkingVithData {
         }
     }
 
-//Метод для аунтификации аккаунта
-    public int auntificationAccaunt(String login, String password) throws SQLException {
+//Метод для получения аккаунта по логину
+    public ResultSet getAccaunt(String login) throws SQLException {
         connectSQL(nameFile);
 
         String sql = "SELECT login, password FROM workers WHERE login = ?";
@@ -221,19 +226,25 @@ public class SQLlite implements IWorkingVithData {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        
-        if(resultSet == null) {
-            System.out.println("Аккаунта с таким логином не найдено!");
+
+        return resultSet;
+    }
+
+//Метод для аунтификация аккаунта
+    public Log auntificationAccaunt(String login, String password) throws SQLException {
+        ResultSet resultSet = getAccaunt(login);
+
+        if(!resultSet.next()) {
             connection.close();
-            return 1;
+            return logger.getLogByName("accaunt not found");
         }
         else if(!resultSet.getString(2).equals(password)) {
             connection.close();
-            return 2;
+            return logger.getLogByName("wrong password");
         }
         else {
             connection.close();
-            return 0;
+            return logger.getLogByName("login successful");
         }
     }
 

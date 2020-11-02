@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -31,48 +32,28 @@ public class LoginController implements Initializable {
     @FXML
     private Label errorChecker;
 
-    public void foo() {
-        System.out.println("you inuted:" + " " + passwordField.getText());
-    }
+    @FXML
+    private Button entrace;
 
     public void checkAccaunt() throws SQLException {
-        switch(new SQLlite("workers.db").auntificationAccaunt(loginField.getText(), passwordField.getText())) {
-            case 0: {
-                System.out.println("verification success!");
+        errorChecker.setText(new SQLlite("workers.db").auntificationAccaunt(loginField.getText(), passwordField.getText()).getLogInfo());
 
-                URL url = MainController.class.getResource("/mainPage.fxml");
+        URL url = getClass().getResource("/mainPage.fxml");
+        FXMLLoader loader = new FXMLLoader(url);
 
-                FXMLLoader loader = new FXMLLoader(url);
-
-                MainController controller = loader.getController();
-
-                Parent root = null;
-                try {
-                    root = loader.load();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                Scene scene = new Scene(root);
-
-                Stage stage = new Stage();
-
-                stage.setTitle("main");
-                stage.setScene(scene);
-                stage.show();
-
-                errorChecker.setText("verification success!");
-                break;
-            }
-            case 1: {
-                errorChecker.setText("This accaunt not found :(");
-                break;
-            }
-            case 2: {
-                errorChecker.setText("You inuted wrong password!");
-                break;
-            }
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
+        stage.setTitle("Bicycle Workshop");
+        stage.setScene(new Scene(root));
+        stage.show();
+
+        Stage lastStage = (Stage) entrace.getScene().getWindow();
+        lastStage.close();
     }
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<clients>
+<id id="2">
+<name>Вася</name>
+<surname>Васюнин</surname>
+<patronymic>Петрович</patronymic>
+<date>20.10.2020, 13:02</date>
+<numberBicycle>+79873613896</numberBicycle>
+<numberPhone/>
+<state>50%</state>
+<cost>500р</cost>
+<term/>
+<breakage>Диск Шина </breakage>
+</id>
+<id id="4">
+<name>Вася</name>
+<surname>Васюнин</surname>
+<patronymic>Петрович</patronymic>
+<date>20.10.2020, 13:16</date>
+<numberBicycle>+79873613896</numberBicycle>
+<numberPhone/>
+<state>50%</state>
+<cost>500р</cost>
+<term/>
+<breakage>Диск Шина </breakage>
+</id>
+</clients>

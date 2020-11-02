@@ -22,7 +22,7 @@ public class XML implements IWorkingVithData {
     private Document document;
     private NodeList listId;
     private String indentable = "no";
-    private String path = "com/xxxmkxxx/BicycleWorkshop/XML/";
+    private String path = "src/com/xxxmkxxx/BicycleWorkshop/XML/";
     private String nameFile;
 
 

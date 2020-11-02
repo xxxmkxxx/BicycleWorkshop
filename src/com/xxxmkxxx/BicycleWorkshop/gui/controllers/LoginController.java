@@ -36,24 +36,27 @@ public class LoginController implements Initializable {
     private Button entrace;
 
     public void checkAccaunt() throws SQLException {
-        errorChecker.setText(new SQLlite("workers.db").auntificationAccaunt(loginField.getText(), passwordField.getText()).getLogInfo());
+        String logInfo = new SQLlite("workers.db").auntificationAccaunt(loginField.getText(), passwordField.getText()).getLogInfo();
+        errorChecker.setText(logInfo);
 
-        URL url = getClass().getResource("/mainPage.fxml");
-        FXMLLoader loader = new FXMLLoader(url);
+        if(logInfo.equals("You login successful!")) {
+            URL url = getClass().getResource("/mainPage.fxml");
+            FXMLLoader loader = new FXMLLoader(url);
 
-        Stage stage = new Stage();
-        Parent root = null;
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
+            Stage stage = new Stage();
+            Parent root = null;
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            stage.setTitle("Bicycle Workshop");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            Stage lastStage = (Stage) entrace.getScene().getWindow();
+            lastStage.close();
         }
-
-        stage.setTitle("Bicycle Workshop");
-        stage.setScene(new Scene(root));
-        stage.show();
-
-        Stage lastStage = (Stage) entrace.getScene().getWindow();
-        lastStage.close();
     }
 }

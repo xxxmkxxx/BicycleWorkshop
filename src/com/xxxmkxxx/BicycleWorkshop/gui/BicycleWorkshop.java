@@ -2,6 +2,7 @@ package com.xxxmkxxx.BicycleWorkshop.gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Scanner;
 
 import com.xxxmkxxx.BicycleWorkshop.gui.controllers.LoginController;
 import javafx.application.Application;
@@ -33,6 +34,5 @@ public class BicycleWorkshop extends Application {
         stage.setTitle("Bicycle Workshop");
         stage.setScene(scene);
         stage.show();
-
     }
 }

@@ -15,7 +15,7 @@ public class SQLlite implements IWorkingVithData {
     private Logger logger = new Logger();
 
     private Connection connection;
-    private String path = "src/com/xxxmkxxx/BicycleWorkshop/sql/sqlLite/";
+    private String path = ""; // = "src/com/xxxmkxxx/BicycleWorkshop/sql/sqlLite/";
     private String nameFile;
     private String link = "jdbc:sqlite:";
     private List <Order> lastContent;

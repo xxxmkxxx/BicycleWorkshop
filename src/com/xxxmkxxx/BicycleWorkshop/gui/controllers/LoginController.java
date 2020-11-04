@@ -36,7 +36,7 @@ public class LoginController implements Initializable {
     private Button entrace;
 
     public void checkAccaunt() throws SQLException {
-        String logInfo = new SQLlite("workers.db").auntificationAccaunt(loginField.getText(), passwordField.getText()).getLogInfo();
+        String logInfo = new SQLlite("src/com/xxxmkxxx/BicycleWorkshop/sql/sqlLite/workers.db").auntificationAccaunt(loginField.getText(), passwordField.getText()).getLogInfo();
         errorChecker.setText(logInfo);
 
         if(logInfo.equals("You login successful!")) {

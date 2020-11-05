@@ -31,7 +31,7 @@ public class BicycleWorkshop extends Application {
 
         Scene scene = new Scene(root);
 
-        stage.setTitle("Bicycle Workshop");
+        stage.setTitle("Веломастерская");
         stage.setScene(scene);
         stage.show();
     }

@@ -9,8 +9,10 @@ import com.xxxmkxxx.BicycleWorkshop.gui.tableviews.Repairs;
 import com.xxxmkxxx.BicycleWorkshop.sql.sqlLite.SQLlite;
 import com.xxxmkxxx.BicycleWorkshop.xml.XML;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -18,6 +20,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -99,8 +102,14 @@ public class MainController implements Initializable {
     private TableColumn <Orders, String> orderNumberOwner;
 
 
-    private IWorkingVithData object;
-    private List <Order> listOrders;
+    public static IWorkingVithData object;
+    public static IWorkingVithData tempObject;
+    public static List <Order> listOrders;
+    public static List <Order> tempListOrders;
+    public static String pathMainDB;
+    public static String pathSaveDB;
+    public Order tempOrder;
+    private String typeDB;
 
 //Метод открытия файла (Открыть)
     public void openFile() {
@@ -113,23 +122,68 @@ public class MainController implements Initializable {
         stage.setScene(scene);
 
         File file = fileChooser.showOpenDialog(stage);
+        pathMainDB = file.getAbsolutePath();
 
         switch(file.getName().split("\\.")[file.getName().split("\\.").length - 1]) {
             case "db":
-                object = new SQLlite(file.getAbsolutePath());
+                object = new SQLlite(pathMainDB);
+                tempObject = new SQLlite(pathMainDB);
+                listOrders = object.readData();
+                tempListOrders = listOrders;
+                typeDB = "db";
                 break;
             case "xml":
-                object = new XML(file.getAbsolutePath());
+                object = new XML(pathMainDB);
+                tempObject = new XML(pathMainDB);
+                listOrders = object.readData();
+                tempListOrders = listOrders;
+                typeDB = "xml";
                 break;
         }
-
-        showData();
+        showData(listOrders);
     }
 
-//Метод для отображения данных таблицы
-    public void showData() {
-        listOrders = object.readData();
+//Метод для сохранения данных в этот же фаил
+    public void safeData() {
+        listOrders = tempListOrders;
+        object.writeData(listOrders);
+    }
 
+//Метод для сохранения данных в выбранный фаил
+    public void safeAs() {
+        listOrders = tempListOrders;
+        FileChooser fileChooser = new FileChooser();
+
+        Stage stage = new Stage();
+        Scene scene = new Scene(new Group());
+
+        stage.setTitle("Выберите файл...");
+        stage.setScene(scene);
+
+        File file = fileChooser.showSaveDialog(stage);
+        fileChooser.setInitialFileName("list");
+
+        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("database files (*.db)", "*.xml");
+        fileChooser.getExtensionFilters().add(filter);
+
+        pathSaveDB = file.getAbsolutePath();
+
+
+        switch(typeDB) {
+            case "db":
+                SQLlite sqLlite = new SQLlite(pathSaveDB);
+                sqLlite.safeData();
+                sqLlite.writeData(listOrders);
+                sqLlite.removeOrder(1);
+                break;
+            case "xml":
+                new XML(pathSaveDB).writeData(listOrders);
+                break;
+        }
+    }
+
+    //Метод для отображения данных таблицы
+    public void showData(List <Order> listOrders) {
 //Таблица владельцев
         ownerId.setCellValueFactory(new PropertyValueFactory("id"));
         ownerSurName.setCellValueFactory(new PropertyValueFactory("surName"));
@@ -242,7 +296,60 @@ public class MainController implements Initializable {
 
 //Метод для вставки записи
     public void inputRecord() {
-        System.out.println("input");
+        URL url = getClass().getResource("/inputPage.fxml");
+        FXMLLoader loader = new FXMLLoader(url);
+
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        stage.setTitle("Добавление записи");
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+//Метод для удаления записи
+    public void deleteRecord() {
+        URL url = getClass().getResource("/deletePage.fxml");
+        FXMLLoader loader = new FXMLLoader(url);
+
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        stage.setTitle("Удаление записи");
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+//Метод для обновления записей
+    public void updateRecords() {
+        showData(tempListOrders);
+    }
+
+    public void replaceRecord() {
+        URL url = getClass().getResource("/replacePage.fxml");
+        FXMLLoader loader = new FXMLLoader(url);
+
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        stage.setTitle("Изменение записи");
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
 }

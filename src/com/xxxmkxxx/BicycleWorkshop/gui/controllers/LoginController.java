@@ -51,7 +51,7 @@ public class LoginController implements Initializable {
                 e.printStackTrace();
             }
 
-            stage.setTitle("Bicycle Workshop");
+            stage.setTitle("Веломастерская");
             stage.setScene(new Scene(root));
             stage.show();
 

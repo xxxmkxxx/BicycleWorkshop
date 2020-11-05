@@ -7,7 +7,7 @@ import java.util.List;
 public class Order implements Cloneable{
     private int id;
     private String nameFile = "id.txt";
-    private String path = "out/BicycleWorkshop/com/xxxmkxxx/BicycleWorkshop/xml/";
+    private String path = "src/com/xxxmkxxx/BicycleWorkshop/xml/";
 
     private IWorkingVithData object;
 
@@ -74,13 +74,13 @@ public class Order implements Cloneable{
 
 //Метод для добавления элемента
     public void addOrder(Order order, List listOrders) {
-        object.writeOrder(order);
+        //object.writeOrder(order);
         listOrders.add(order);
     }
 
 //Метод для удаления элемента
     public void removeOrderForId(int id, List listOrders) {
-        object.removeOrder(id);
+        //object.removeOrder(id);
 
         for(int i = 0; i < listOrders.size(); i++) {
             List <Order> tempListOrders = listOrders;
@@ -95,12 +95,12 @@ public class Order implements Cloneable{
     }
 
     public void writeOrders(List listOrders, List newOrders) {
-        object.writeData(newOrders);
+        //object.writeData(newOrders);
         listOrders.addAll(newOrders);
     }
 
     public void replaceOrders(int ids[], List listOrders, List listNewOrders) {
-        object.replaceData(ids, listNewOrders);
+        //object.replaceData(ids, listNewOrders);
 
         List <Order> tempList = new ArrayList(listOrders);
         List <Order> tempNewList = new ArrayList(listNewOrders);

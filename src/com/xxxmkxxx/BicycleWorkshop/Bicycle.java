@@ -8,10 +8,16 @@ import java.util.Scanner;
 public class Bicycle {
     private String numberBicycle;
     private int state = 50;
-    private String breakage[];
+    private String breakage[] = new String[1];
 
-    private static int algorythmComputationState(){
-        return 0;
+    private int algorythmComputationState(){
+        int tempState = (13 - breakage.length) * 10;
+
+        if(breakage.length >= 10) {
+            tempState = 90;
+        }
+
+        return tempState;
     }
 
 //Геттеры для получения полей
@@ -19,12 +25,20 @@ public class Bicycle {
         return state;
     }
 
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public void setBreakage(String[] breakage) {
+        this.breakage = breakage;
+    }
+
     public String[] getBreakage() {
         return breakage;
     }
 
     public Bicycle(Owner owner, String ... breakage){
-        algorythmComputationState();
+        state = algorythmComputationState();
         numberBicycle = owner.getNumberBicycle();
         this.breakage = breakage;
     }

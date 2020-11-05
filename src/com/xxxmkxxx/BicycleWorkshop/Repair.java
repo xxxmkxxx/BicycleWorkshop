@@ -9,13 +9,13 @@ public class Repair{
     private String numberBicycle;
 
 // Алгоритм вычисления стоимости ремонта
-    private static int algorythmComputationCost(){
-        return 0;
+    private static int algorythmComputationCost(Bicycle bicycle){
+        return (100 - bicycle.getState()) * 100 + 200 ;
     }
 
 //Алгоритм вычисления даты окончания ремонта
-    private static String algorythmComputationDateToFinalRepair(){
-        return null;
+    private static String algorythmComputationDateToFinalRepair(Owner owner){
+        return owner.getDateRegistration();
     }
 
 //Геттеры для получения полей
@@ -27,10 +27,14 @@ public class Repair{
         return dateToFinalRepair;
     }
 
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
     public Repair(Owner owner, Bicycle bicycle){
         numberBicycle = owner.getNumberBicycle();
-        algorythmComputationCost();
-        algorythmComputationDateToFinalRepair();
+        cost = algorythmComputationCost(bicycle);
+        algorythmComputationDateToFinalRepair(owner);
     }
 
     public Repair(int cost, Owner owner, Bicycle bicycle){

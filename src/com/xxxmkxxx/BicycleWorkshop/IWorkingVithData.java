@@ -8,6 +8,8 @@ public interface IWorkingVithData {
     //Метод для аписи новых заказов в файл
     void writeData(List listOrders);
 
+    void writeDataAs(List listOrders);
+
     void safeData();
 
     List readData();

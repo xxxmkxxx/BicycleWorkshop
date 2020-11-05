@@ -18,16 +18,12 @@
       <menus>
         <Menu fx:id="menuBar" mnemonicParsing="false" text="Файл">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Открыть" onAction="#openFile"/>
-                  <MenuItem mnemonicParsing="false" text="Сохранить" />
-                  <MenuItem mnemonicParsing="false" text="Сохранить как..." />
+                  <MenuItem mnemonicParsing="false" onAction="#openFile" text="Открыть" />
+                  <MenuItem mnemonicParsing="false" onAction="#safeData" text="Сохранить" />
+                  <MenuItem mnemonicParsing="false" onAction="#safeAs" text="Сохранить как..." />
                </items></Menu>
         <Menu mnemonicParsing="false" text="Редактировать" />
-            <Menu mnemonicParsing="false" text="Настройки">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-              </items>
-            </Menu>
+            <Menu mnemonicParsing="false" text="Настройки" />
         <Menu mnemonicParsing="false" text="Помощь">
           <items>
             <MenuItem mnemonicParsing="false" text="Как начать..." />
@@ -112,8 +108,9 @@
             <MenuButton fx:id="chooseAction" layoutX="464.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="176.0" text="Выберите действие...">
               <items>
                 <MenuItem fx:id="inputButton" mnemonicParsing="false" onAction="#inputRecord" text="Вставить запись" />
-                <MenuItem mnemonicParsing="false" text="Удалить запись" />
-                  <MenuItem mnemonicParsing="false" text="Обновить записи" onAction="#showData" />
+                <MenuItem mnemonicParsing="false" onAction="#deleteRecord" text="Удалить запись" />
+                  <MenuItem mnemonicParsing="false" text="Изменить запись" onAction="#replaceRecord"/>
+                  <MenuItem mnemonicParsing="false" onAction="#updateRecords" text="Обновить записи" />
               </items>
             </MenuButton>
          </children>

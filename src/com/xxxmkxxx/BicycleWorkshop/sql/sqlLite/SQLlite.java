@@ -32,7 +32,46 @@ public class SQLlite implements IWorkingVithData {
 //Метод для сохранения данных
     @Override
     public void safeData() {
+        connectSQL(nameFile);
 
+        String sql = "CREATE TABLE IF NOT EXISTS customers (\n" +
+                "\tid INTEGER,\n" +
+                "\tname CHAR(15),\n" +
+                "\tsurname CHAR(20),\n" +
+                "\tpatronymic CHAR(20),\n" +
+                "\tnumberbicycle CHAR(10),\n" +
+                "\tnumberphone CHAR(11),\n" +
+                "\tstate CHAR(3),\n" +
+                "\tcost CHAR(8),\n" +
+                "\tdate DATA,\n" +
+                "\tbreakage TEXT,\n" +
+                "\tPRIMARY KEY(id AUTOINCREMENT)\n" +
+                ");";
+        try {
+            Statement stmt = connection.createStatement();
+            stmt.execute(sql);
+
+            sql = "INSERT INTO customers (name, surname, patronymic, numberbicycle, numberphone, state, cost, date, breakage) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement preparedStatement;
+            preparedStatement = connection.prepareStatement(sql);
+
+            //preparedStatement.setInt(1, 1);
+            preparedStatement.setString(1, "Имя");
+            preparedStatement.setString(2, "Фамилия");
+            preparedStatement.setString(3, "Отчество");
+            preparedStatement.setString(4, "Номер велосипеда");
+            preparedStatement.setString(5, "Номер телефона");
+            preparedStatement.setString(6, "100%");
+            preparedStatement.setString(7, "100р");
+            preparedStatement.setString(8, "Дата заказа");
+            preparedStatement.setString(9, "Поломки ");
+
+            preparedStatement.executeUpdate();
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
 //Метод для чтения данных
@@ -48,30 +87,32 @@ public class SQLlite implements IWorkingVithData {
             Statement statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
 
-            while(resultSet.next()) {
-                content.add (new Order(
-                        new SQLlite(nameFile),
-//id
-                        resultSet.getInt(1),
-//Имя
-                        resultSet.getString(2),
-//Фамилия
-                        resultSet.getString(3),
-//Отчество
-                        resultSet.getString(4),
-//Номер велосипеда
-                        resultSet.getString(5),
-//Номер телефона
-                        resultSet.getString(6),
-//Состояние
-                        Integer.parseInt(resultSet.getString(7).split("%")[0]),
-//Стоимость ремонта
-                        Integer.parseInt(resultSet.getString(8).split("р")[0]),
-//Дата
-                        resultSet.getString(9),
-//Поломки
-                        resultSet.getString(10).split(" ")
-                ));
+            if(resultSet != null) {
+                while(resultSet.next()) {
+                    content.add (new Order(
+                            new SQLlite(nameFile),
+    //id
+                            resultSet.getInt(1),
+    //Имя
+                            resultSet.getString(2),
+    //Фамилия
+                            resultSet.getString(3),
+    //Отчество
+                            resultSet.getString(4),
+    //Номер велосипеда
+                            resultSet.getString(5),
+    //Номер телефона
+                            resultSet.getString(6),
+    //Состояние
+                            Integer.parseInt(resultSet.getString(7).split("%")[0]),
+    //Стоимость ремонта
+                            Integer.parseInt(resultSet.getString(8).split("р")[0]),
+    //Дата
+                            resultSet.getString(9),
+    //Поломки
+                            resultSet.getString(10).split(" ")
+                    ));
+                }
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -86,30 +127,30 @@ public class SQLlite implements IWorkingVithData {
     @Override
     public void writeData(List list) {
         List <Order> tempList = new ArrayList(list);
-        boolean indicator = false;
+        lastContent = readData();
 
-        for(int i = 0; i < list.size(); i++) {
-            nextIdex: if(tempList.get(i).getOwner().getId() != lastContent.get(i).getOwner().getId()) {
-                for(int j = lastContent.size(); j > i; j--) {
-                    if(lastContent.get(j).getOwner().getId() == tempList.get(i).getOwner().getId()) {
-                        continue;
-                    }
-                    else {
-                        indicator = true;
-                    }
-                }
+        for(int i = 0; i < lastContent.size(); i++) {
+           removeOrder(lastContent.get(i).getOwner().getId());
+        }
 
-                if(indicator) {
-                    writeOrder((Order) list.get(i));
-                    break nextIdex;
-                }
-            }
+        for(int i = 0; i < tempList.size(); i++) {
+            writeOrder(tempList.get(i));
+        }
 
-            if(indicator) writeOrder((Order) list.get(i));
+    }
+
+//Метод для записи данных в выбранный файл
+
+
+    @Override
+    public void writeDataAs(List listOrders) {
+        List <Order> tempList = new ArrayList(listOrders);
+        for(int i = 0; i < tempList.size(); i++) {
+            writeOrder(tempList.get(i));
         }
     }
 
-//Метод для удаления данных
+    //Метод для удаления данных
     @Override
     public void deleteData(int arrId[]) {
         for(int i = 0; i < arrId.length; i++) {

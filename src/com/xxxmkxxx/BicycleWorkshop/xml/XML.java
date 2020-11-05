@@ -89,26 +89,23 @@ public class XML implements IWorkingVithData {
     @Override
     public void writeData(List list) {
         List <Order> tempList = new ArrayList(list);
-        boolean indicator = false;
+        lastContent = readData();
 
-        for(int i = 0; i < list.size(); i++) {
-            nextIdex: if(tempList.get(i).getOwner().getId() != lastContent.get(i).getOwner().getId()) {
-                for(int j = lastContent.size(); j > i; j--) {
-                    if(lastContent.get(j).getOwner().getId() == tempList.get(i).getOwner().getId()) {
-                        continue;
-                    }
-                    else {
-                        indicator = true;
-                    }
-                }
 
-                if(indicator) {
-                    writeOrder((Order) list.get(i));
-                    break nextIdex;
-                }
-            }
+        for(int i = 0; i < lastContent.size(); i++) {
+            removeOrder(lastContent.get(i).getOwner().getId());
+        }
 
-            if(indicator) writeOrder((Order) list.get(i));
+        for(int i = 0; i < tempList.size(); i++) {
+            writeOrder(tempList.get(i));
+        }
+    }
+
+    @Override
+    public void writeDataAs(List listOrders) {
+        List <Order> tempList = new ArrayList(listOrders);
+        for(int i = 0; i < tempList.size(); i++) {
+            writeOrder(tempList.get(i));
         }
     }
 
@@ -127,7 +124,12 @@ public class XML implements IWorkingVithData {
         FileOutputStream fos = null;
         try {
             if(indentable == "yes") {
-                fos = new FileOutputStream(path + "readable_" + nameFile);
+                String catalogs[] = nameFile.split("/");
+                for(int i = 0; i < catalogs.length - 1; i++) {
+                    path += catalogs[i] + "/";
+                }
+
+                fos = new FileOutputStream(path  + "redable_" + nameFile.split("/")[nameFile.split("/").length - 1]);
             }
             else {
                 fos = new FileOutputStream(path + nameFile);
